@@ -19,3 +19,25 @@ body {
   background: var(--background);
   font-family: 'Roboto', sans-serif;
 }
+
+/* ::-webkit-scrollbar */
+::-webkit-scrollbar {
+  @apply w-[10px] h-[10px];
+}
+
+/* ::-webkit-scrollbar-thumb */
+::-webkit-scrollbar-thumb {
+  @apply bg-[#b9b9b9] rounded-full;
+}
+
+/* ::-webkit-scrollbar-track */
+::-webkit-scrollbar-track {
+  @apply rounded-full bg-[#e6e6e6];
+}
+
+/* link__to-leaf and link__to-branch */
+.link__to-leaf,
+.link__to-branch {
+  @apply stroke-gray-400 !important;
+}
+

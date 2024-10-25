@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 
-export const CartContext = createContext({});
+export const CartContext = createContext<any>({});
 
 export function CartContextProvider({ children }: { children: any }) {
   const [cartProducts, setCartProducts] = useState<any>([]);
@@ -24,8 +24,19 @@ export function CartContextProvider({ children }: { children: any }) {
     setCartProducts((prev: any) => [...prev, productId]);
   }
 
+  function removeProduct(productId: any) {
+    setCartProducts((prev: any) => {
+      const pos = prev.indexOf(productId);
+      if (pos !== -1) {
+        return prev.filter((value: any, index: number) => index !== pos);
+      }
+
+      return prev;
+    })
+  }
+
   return (
-    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct }}>
+    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct, removeProduct }}>
       {children}
     </CartContext.Provider>
   );

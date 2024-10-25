@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import PrimaryButton from './CustomButton';
 import CustomButton from './CustomButton';
 import ButtonLink from './ButtonLink';
 import { CartContext } from './CartContext';
