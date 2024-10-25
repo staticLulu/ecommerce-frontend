@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 
 const Header = () => {
+  const { cartProducts } = useContext(CartContext) as any;
+
   const pathList = [
     {
       href: '/',
@@ -20,7 +24,7 @@ const Header = () => {
     },
     {
       href: '/cart',
-      name: "Cart (0)"
+      name: `Cart (${cartProducts.length})`
     }
   ];
   return (
