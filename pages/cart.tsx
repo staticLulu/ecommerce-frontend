@@ -7,7 +7,7 @@ import CustomInput from "@/components/CustomInput";
 
 const CartPage = () => {
   const { cartProducts, addProduct, removeProduct } = useContext(CartContext) as any;
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<any>([]);
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [city, setCity] = useState<string>('');
@@ -16,6 +16,7 @@ const CartPage = () => {
   const [country, setCountry] = useState<string>('');
 
   useEffect(() => {
+    console.log('cart products?', cartProducts)
     if (cartProducts.length > 0) {
       axios.post('/api/cart', {ids: cartProducts}).then(response => {
         setProducts(response.data);
@@ -33,11 +34,38 @@ const CartPage = () => {
     removeProduct(id);
   }
 
+  async function doPayment() {
+    const response = await axios.post('/api/checkout', {
+      //@ts-ignore
+      name, email, city, postalCode, streetAddress, country,
+      cartProducts,
+    });
+
+    if (response.data.url) {
+      window.location = response.data.url
+    }
+  }
+
   let total = 0;
   for (const productId of cartProducts) {
     const product = products.find((p: any) => p._id === productId);
     const price = product ? product.price : 0; // Use product.price if found, else 0
     total += price;
+  }
+  
+  if (window.location.href.includes('success')) {
+    return (
+      <>
+        <Header/>
+
+        <div className="bg-white p-10 m-4 rounded-xl w-fit">
+          <div className="grid gap-4">
+            <h1 className="text-3xl font-bold">Thanks for your order!</h1>
+            <p>We will email you when your order will be sent.</p>
+          </div>
+        </div>
+      </>
+    )
   }
 
   const buttonStyleProps = `{
@@ -137,12 +165,7 @@ const CartPage = () => {
           {!!cartProducts.length && (
             <div className="bg-white rounded-md p-[30px]">
               <p className="text-xl font-semibold">Order information</p>
-
-              <form 
-                method="post" 
-                action={"/api/checkout"} 
-                className="grid gap-1 mb-2"
-              >
+              <div className="grid gap-2.5 mt-4">
                 <CustomInput 
                   type="text" 
                   placeholder="Name" 
@@ -187,18 +210,14 @@ const CartPage = () => {
                   name="country"
                   onChange={(e: any) => setCountry(e.target.value)} 
                 />
-              </form>
-              <input 
-                type="hidden" 
-                name="products"
-                value={cartProducts.join(',')} 
-              />
-              <button 
-                className="bg-black text-white rounded-md w-full py-1.5"
-                type="submit"
-              >
-                Continue to payment
-              </button>
+
+                <button 
+                  className="bg-black text-white rounded-md w-full py-1.5"
+                  onClick={doPayment}
+                >
+                  Continue to payment
+                </button>
+              </div>
             </div>
           )}
         </div>
