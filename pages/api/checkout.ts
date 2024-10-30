@@ -2,6 +2,7 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
 import { NextApiRequest, NextApiResponse } from "next";
+//@ts-ignore
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 export default async function handler(req: NextApiRequest, res:NextApiResponse) {

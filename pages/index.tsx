@@ -4,10 +4,16 @@ import NewProduct from "@/components/NewProducts";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
-export default function Home({featuredProduct, newProducts}:{featuredProduct: any; newProducts: any;}) {
+export default function Home({
+  featuredProduct, 
+  newProducts
+}:{
+  featuredProduct: any; 
+  newProducts: any;
+}) {
   
   return (
-    <div>
+    <div className="mb-10">
       <Header />
       <Featured product={featuredProduct} />
       <NewProduct products={newProducts} />

@@ -3,6 +3,7 @@ import CustomButton from "./CustomButton";
 import CartIcon from "./icons/Cart";
 import { useContext } from "react";
 import { CartContext } from "./CartContext";
+import Link from "next/link";
 
 const ProductBox = ({
   _id, 
@@ -19,10 +20,10 @@ const ProductBox = ({
 }) => {
   const { addProduct } = useContext(CartContext) as any;
   return (
-    <div>
+    <Link href={`/product/${_id}`} passHref>
       <div className="bg-white p-5 flex justify-center h-[120px] items-center rounded-lg">
         <Image 
-          src={images[0]} 
+          src={images?.[0]} 
           alt="products" 
           width={100} 
           height={100} 
@@ -42,7 +43,7 @@ const ProductBox = ({
           </CustomButton>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

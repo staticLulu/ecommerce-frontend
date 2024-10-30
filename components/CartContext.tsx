@@ -24,6 +24,10 @@ export function CartContextProvider({ children }: { children: any }) {
     setCartProducts((prev: any) => [...prev, productId]);
   }
 
+  function clearCart() {
+    setCartProducts([]);
+  }
+
   function removeProduct(productId: any) {
     setCartProducts((prev: any) => {
       const pos = prev.indexOf(productId);
@@ -36,7 +40,7 @@ export function CartContextProvider({ children }: { children: any }) {
   }
 
   return (
-    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct, removeProduct }}>
+    <CartContext.Provider value={{ cartProducts, setCartProducts, addProduct, removeProduct, clearCart }}>
       {children}
     </CartContext.Provider>
   );

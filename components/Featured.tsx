@@ -12,9 +12,9 @@ const Featured = ({product}:{product: any}) => {
   }
 
   return (
-    <div className="p-5 max-w-screen-xl mx-auto bg-[#222] text-[#fff]">
-      <div className="text-[#fff] py-10 px-0 items-center gap-10 grid grid-cols-2 w-full">
-        <div className=''>
+    <div className="p-5 max-w-screen-2xl mx-auto bg-[#222] text-[#fff] mt-12">
+      <div className="text-[#fff] py-10 items-center justify-center gap-10 flex flex-col-reverse md:flex-row md:justify-evenly w-full">
+        <div className='grid justify-center'>
           <h1 className="m-0 font-normal text-5xl">{product.title}</h1>
           <p className="text-[#aaa] text-sm">{product.description}</p>
           

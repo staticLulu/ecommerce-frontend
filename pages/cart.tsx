@@ -6,7 +6,7 @@ import Image from "next/image";
 import CustomInput from "@/components/CustomInput";
 
 const CartPage = () => {
-  const { cartProducts, addProduct, removeProduct } = useContext(CartContext) as any;
+  const { cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext) as any;
   const [products, setProducts] = useState<any>([]);
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -14,6 +14,7 @@ const CartPage = () => {
   const [postalCode, setPostalCode] = useState<string>('');
   const [streetAddress, setStreetAddress] = useState<string>('');
   const [country, setCountry] = useState<string>('');
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
     console.log('cart products?', cartProducts)
@@ -25,6 +26,18 @@ const CartPage = () => {
       setProducts([]);
     }
   }, [cartProducts]);
+
+  useEffect(() => {
+    //@ts-ignore
+    if (typeof window === 'undefine') {
+      return;
+    }
+    //@ts-ignore
+    if ( window.location.href.includes('success')) {
+      setIsSuccess(true);
+      clearCart();
+    }
+  }, []);
 
   function moreOfThisProduct(id: any) {
     addProduct(id);
@@ -53,7 +66,7 @@ const CartPage = () => {
     total += price;
   }
   
-  if (window.location.href.includes('success')) {
+  if (isSuccess) {
     return (
       <>
         <Header/>
@@ -79,8 +92,8 @@ const CartPage = () => {
     <div>
       <Header />
 
-      <div className="max-w-screen-xl mx-auto p-5">
-        <div className="grid grid-cols-2 gap-10 mt-10">
+      <div className="max-w-screen-xl mx-auto p-5 mt-16">
+        <div className="grid md:grid-cols-2 gap-5 mt-10">
           <div className="bg-white p-[30px] rounded-md">
             <h2>Cart</h2>
             {!products?.length && (
