@@ -19,7 +19,7 @@ const Featured = ({product}:{product: any}) => {
           <p className="text-[#aaa] text-sm">{product.description}</p>
           
           <div className='flex gap-1.5 mt-5'>
-            <ButtonLink href={'/products/'+product._id}>Read more</ButtonLink>
+            <ButtonLink href={'/product/'+product._id}>Read more</ButtonLink>
             <CustomButton isPrimary onClick={addFeaturedToCart}>
               <svg 
                 xmlns="http://www.w3.org/2000/svg" 
