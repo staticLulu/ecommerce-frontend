@@ -4,7 +4,6 @@ import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
 const ProductsPage = ({products}:{products: any}) => {
-  console.log(products);
   
   return (
     <div>
