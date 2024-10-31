@@ -1,7 +1,7 @@
 
 # E-commerce front😎🌻
 
-Here's e-commerce front, my purpose is i want to impletement a geat e-commerce and understand about flow of e-commerce system, building a beautiful ui. I chosen Next Js and combination with many libraries to build my project, let's view my great achievements.
+Here's e-commerce front, my purpose is i want to implement a great e-commerce and understand about flow of e-commerce system, building a beautiful ui. I chosen Next Js and combination with many libraries to build my project, let's view my great achievements.
 
 
 ## Features
@@ -9,22 +9,7 @@ Here's e-commerce front, my purpose is i want to impletement a geat e-commerce a
 - Advanced ui design with Next Js
 - Best responsive ui
 - Authorization with Next-auth
-- Buying all most products, add to carts, visit account informations and view all the products categories in my ecommerce website.
-
-
-## Tech Stack
-
-**Client:** 
-- Next Js 
-- State managements
-- TailwindCSS
-- Axios
-- Typescript
-
-**Server:** 
-- Mogodb
-- mongoose
-
+- Buying all most products, add to carts, visit account information and view all the products categories in my e-commerce website.
 
 ## Installation
 

@@ -9,10 +9,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#5542f6",
+        primary: "#162df3",
+        secondary: "#F58700",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        "primary-gradient": "linear-gradient(28deg, rgba(203,213,225,1) 0%, rgba(71,85,105,1) 65%, rgba(51,65,85,1) 100%);"
+      }
     },
     screens: {
       'sm': '640px',

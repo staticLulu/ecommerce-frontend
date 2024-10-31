@@ -1,16 +1,22 @@
 const CustomButton = ({children, isPrimary, outline, ...rest}: any) => {
   return (
     <button 
-      className={`
-        ${isPrimary 
-          ? 'bg-primary text-white flex gap-1 items-center' 
-          :outline ? 'border border-primary bg-transparent text-primary flex items-center gap-1'
-          : "bg-transparent text-white border border-gray-200"
-        } 
+      className=" 
+        bg-secondary 
+        text-white 
+        flex 
+        gap-1 
+        items-center
         py-1 
         px-3
         rounded-md
-      `}
+        hover:bg-secondary/80
+        hover:scale-105
+        transition-all
+        duration-100
+        ease-linear
+        hover:backdrop-blur-xl
+      "
       {...rest}
     >
       {children}

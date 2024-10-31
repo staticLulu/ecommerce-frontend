@@ -10,7 +10,7 @@ const ProductsPage = ({products}:{products: any}) => {
     <div>
       <Header />
 
-      <div className="max-w-screen-2xl mx-auto mt-20 p-5">
+      <div className="max-w-screen-xl mx-auto mt-20 p-5">
         <h1 className="text-2xl font-bold">All products</h1>
         <ProductsGrid products={products}/>
       </div>

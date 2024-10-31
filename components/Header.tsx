@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <header className="bg-gray-800 text-gray-100 shadow-lg fixed top-0 w-full z-50">
-      <div className="max-w-screen-2xl mx-auto px-5 py-4 flex justify-between items-center">
+      <div className="max-w-screen-xl mx-auto px-5 py-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-semibold text-white">
           Ecommerce
         </Link>

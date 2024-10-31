@@ -1,6 +1,7 @@
 import Featured from "@/components/Featured";
 import Header from "@/components/Header";
 import NewProduct from "@/components/NewProducts";
+import RecommendedCategories from "@/components/RecommendedCategories";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Product";
 
@@ -13,9 +14,10 @@ export default function Home({
 }) {
   
   return (
-    <div className="mb-10">
+    <div>
       <Header />
       <Featured product={featuredProduct} />
+      <RecommendedCategories />
       <NewProduct products={newProducts} />
     </div>
   );

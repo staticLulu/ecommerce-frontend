@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import CustomInput from "@/components/CustomInput";
+import { useRouter } from "next/router";
 
 const CartPage = () => {
   const { cartProducts, addProduct, removeProduct, clearCart } = useContext(CartContext) as any;
@@ -15,6 +16,7 @@ const CartPage = () => {
   const [streetAddress, setStreetAddress] = useState<string>('');
   const [country, setCountry] = useState<string>('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     console.log('cart products?', cartProducts)
@@ -68,16 +70,32 @@ const CartPage = () => {
   
   if (isSuccess) {
     return (
-      <>
+      <div className="mt-24 flex justify-center">
         <Header/>
 
         <div className="bg-white p-10 m-4 rounded-xl w-fit">
-          <div className="grid gap-4">
-            <h1 className="text-3xl font-bold">Thanks for your order!</h1>
-            <p>We will email you when your order will be sent.</p>
-          </div>
+          <h1 className="text-3xl font-bold">Thanks for your order💚✅</h1>
+          <p className="text-center my-4">We will email you when your order will be sent.</p>
+          <button 
+            className="
+              border 
+              border-slate-300 
+              w-fit 
+              px-6 
+              py-2 
+              flex 
+              justify-self-center 
+              text-slate-600 
+              rounded-lg
+              hover:bg-slate-100/80
+              hover:border-slate-200
+            "
+            onClick={() => router.push('/')}
+          >
+            back
+          </button>
         </div>
-      </>
+      </div>
     )
   }
 
@@ -95,10 +113,10 @@ const CartPage = () => {
       <div className="max-w-screen-xl mx-auto p-5 mt-16">
         <div className="grid md:grid-cols-2 gap-5 mt-10">
           <div className="bg-white p-[30px] rounded-md">
-            <h2>Cart</h2>
+            <h2 className="text-3xl font-bold">Cart</h2>
             {!products?.length && (
-              <div>
-                Your carts is empty
+              <div className="text-xl">
+                Your carts is empty 🐼
               </div>
             )}
 
@@ -141,10 +159,11 @@ const CartPage = () => {
                             className="object-cover object-center h-[80px] w-auto"
                           />
                         </div>
-                        {product.title}
+
+                        <p className="mt-3">{product.title}</p>
                       </TdSection>
                       <TdSection> 
-                        <div className="flex gap-4 items-center">
+                        <div className="flex flex-col sm:flex-row gap-4 items-center">
                           <button 
                             onClick={() => lessOfThisProduct(product._id)} 
                             className={buttonStyleProps}

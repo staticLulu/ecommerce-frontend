@@ -1,4 +1,5 @@
 import { CartContext } from "@/components/CartContext";
+import CustomButton from "@/components/CustomButton";
 import Header from "@/components/Header"
 import CartIcon from "@/components/icons/Cart";
 import ProductImages from "@/components/ProductImages";
@@ -12,34 +13,21 @@ const ProductPage = ({product}:{product: any}) => {
   return (
     <div className="mb-10">
       <Header />
-      <div className="p-5 max-w-screen-2xl mx-auto mt-12">
+      <div className="p-5 max-w-screen-xl mx-auto mt-12">
         <div className="grid lg:grid-cols-2 mt-10 gap-10">
           <div className="bg-white p-5 rounded-xl shadow-sm grid justify-center w-full">
             <ProductImages images={product.images}/>
           </div>
           <div>
-            <p className="text-2xl font-bold">{product.title}</p>
-            <p>{product.description}</p>
+            <p className="text-3xl font-bold">{product.title}</p>
+            <p className="my-4 text-slate-500 text-lg leading-8">{product.description}</p>
 
-            <div className="flex gap-4 items-center mt-4 ">
+            <div className="flex gap-4 items-center">
               <p className="text-3xl font-normal text-black">${product.price}</p>
-              <button 
-                className="
-                  bg-primary 
-                  text-white 
-                  px-3 
-                  py-2 
-                  rounded-lg 
-                
-                  flex 
-                  items-center 
-                  gap-1.5
-                "
-                onClick={() =>addProduct(product._id)}
-              >
-                <CartIcon className="w-6 h-6"/>
+              <CustomButton onClick={() =>addProduct(product._id)}>
+                <CartIcon className="w-5 h-5"/>
                 Add to cart
-              </button>
+              </CustomButton>
             </div>
           </div>
         </div>

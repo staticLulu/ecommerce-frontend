@@ -7,7 +7,7 @@ const ButtonLink = ({href, children}: {href: string; children: any}) => {
       className="
         bg-transparent 
         border 
-        border-gray-200 
+        border-slate-300 
         px-4 
         py-2 
         rounded-md

@@ -20,30 +20,51 @@ const ProductBox = ({
 }) => {
   const { addProduct } = useContext(CartContext) as any;
   return (
-    <Link href={`/product/${_id}`} passHref>
-      <div className="bg-white p-5 flex justify-center h-[120px] items-center rounded-lg">
-        <Image 
-          src={images?.[0]} 
-          alt="products" 
-          width={100} 
-          height={100} 
-          unoptimized 
-          loading="lazy" 
-          className="w-auto h-[80px]"
-        />
-      </div>
-
+    <div>
+      <Link href={`/product/${_id}`} passHref>
+        <div 
+          className="
+            bg-white 
+            p-5 
+            flex 
+            justify-center 
+            h-[270px] 
+            items-center 
+            rounded-lg
+            border
+            border-slate-100
+            shadow-sm
+          ">
+          <Image 
+            src={images?.[0]} 
+            alt="products" 
+            width={200} 
+            height={200} 
+            unoptimized 
+            loading="lazy" 
+            className="
+              w-auto 
+              h-[160px] 
+              object-cover 
+              object-center 
+              hover:scale-105 
+              transition-all 
+              duration-300
+            "
+          />
+        </div>
+      </Link>
       <div className="mt-2.5">
-        <p className="text-sm">{title}</p>
-        <div className="flex items-center justify-between mt-0.5">
-          <p className="text-2xl font-bold">${price}</p>
+        <p className="text-lg text-primary">{title}</p>
+        <div className="flex items-center justify-between mt-1">
+          <p className="text-2xl font-bold ">${price}</p>
           <CustomButton outline onClick={() => addProduct(_id)}>
             <CartIcon className="w-4 h-4" />
             Add to cart
           </CustomButton>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 
