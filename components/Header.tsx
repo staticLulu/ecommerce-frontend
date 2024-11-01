@@ -11,8 +11,8 @@ const Header = () => {
   const pathList = [
     { href: '/', name: "Home" },
     { href: '/products', name: "All Products" },
-    { href: '/categories', name: "Categories" },
-    { href: '/account', name: "Account" },
+    // { href: '/categories', name: "Categories" },
+    // { href: '/account', name: "Account" },
     { href: '/cart', name: `Cart (${cartProducts.length})` },
   ];
 
