@@ -18,6 +18,20 @@ const CartPage = () => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const router = useRouter();
 
+  fetch("/api/checkout", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name: "John Doe",
+      email: "johndoe@example.com",
+      city: "New York",
+      postalCode: "10001",
+      streetAddress: "123 Main St",
+      country: "USA",
+      cartProducts: [{ name: "Test Product", price: 1000, quantity: 1 }],
+    }),
+  }).then((res) => res.json()).then(console.log);
+  
   useEffect(() => {
     console.log('cart products?', cartProducts)
     if (cartProducts.length > 0) {
@@ -30,16 +44,14 @@ const CartPage = () => {
   }, [cartProducts]);
 
   useEffect(() => {
-    //@ts-ignore
-    if (typeof window === 'undefine') {
+    if (typeof window === 'undefined') {
       return;
     }
-    //@ts-ignore
     if ( window.location.href.includes('success')) {
       setIsSuccess(true);
       clearCart();
     }
-  }, []);
+  }, [clearCart]);
 
   function moreOfThisProduct(id: any) {
     addProduct(id);
@@ -51,7 +63,6 @@ const CartPage = () => {
 
   async function doPayment() {
     const response = await axios.post('/api/checkout', {
-      //@ts-ignore
       name, email, city, postalCode, streetAddress, country,
       cartProducts,
     });
@@ -60,6 +71,37 @@ const CartPage = () => {
       window.location = response.data.url
     }
   }
+  // async function doPayment() {
+  //   try {
+  //     console.log("✅ Sending checkout request:", {
+  //       name, email, city, postalCode, streetAddress, country, cartProducts
+  //     });
+  
+  //     const response = await axios.post('/api/checkout', {
+  //       name, email, city, postalCode, streetAddress, country, cartProducts,
+  //     });
+  
+  //     console.log("✅ Checkout response:", response.data);
+  
+  //     if (response.data.url) {
+  //       window.location.href = response.data.url;
+  //     } else {
+  //       alert("❌ Error: No checkout URL returned.");
+  //     }
+  //   } catch (error) {
+  //     if (axios.isAxiosError(error)) {
+  //       console.error("❌ Payment error:", error.response?.data || error.message);
+  //     } else {
+  //       console.error("❌ Payment error:", error);
+  //     }
+  //     if (axios.isAxiosError(error)) {
+  //       alert(`❌ Payment failed: ${error.response?.data?.error || "Unknown error"}`);
+  //     } else {
+  //       alert("❌ Payment failed: Unknown error");
+  //     }
+  //   }
+  // }
+  
 
   let total = 0;
   for (const productId of cartProducts) {
